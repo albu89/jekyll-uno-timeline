@@ -1,5 +1,7 @@
 _site/
+.sass-cache/
 .jekyll-cache/
+.jekyll-metadata
 .htaccess
 _config.yml
 .DS_Store
