@@ -1,22 +1,29 @@
 # Site settings
-title: Thomas Zühlke
+title: Alexander Büsser
 description: 'Business Card Page'
 url: 'https://www.zuehlke.cloud'
 baseurl: ''
-profilepic: '/images/tzuehlke.jpg'
-bkimage: '/images/bk1.jpg'
+profilepic: '/images/ajb.jpeg'
+bkimage: '/images/cover.jpg'
 google_analytics: UA-XXXXXX-X
-font_awesome: 'XXXXXXXXXX.js'
+font_awesome: '94f5e5625f.js'
 
 author:
-  name: 'Thomas Zühlke'
-  email: thomas@zuehlke.cloud
-  mastodon: tzuehlke@mstdn.social
-  twitter_username: thomzuehlke
-#  facebook_username: joshgerdes
-  github_username:  tzuehlke
-  linkedin_username:  thomas-zühlke-889182165
-  meetup_name: Azure-Meetup-Rostock-MV
+  name: 'Alexander Büsser'
+  email: aj.buesse@gmail.com
+  twitter_username: AlexanderBusser
+  github_username:  albu89
+  linkedin_username:  abu89
+
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
 
 # Build settings
 destination: _site
@@ -33,5 +40,11 @@ kramdown:
   # do not replace newlines by <br>s
   hard_wrap: false
 
-#plugins: ['jekyll-paginate']
+plugins: 
+  - jekyll-paginate
+  - jekyll-feed
+
+paginate: 5
+paginate_path: "/blog/page/:num/"
+
 exclude: ['README.md', 'screenshot-overview.png']

@@ -1,9 +1,9 @@
 ---
 ---
-@import "uno";
-@import "tables";
-@import "monokai";
-@import "timeline";
+@use "uno";
+@use "tables";
+@use "monokai";
+@use "timeline";
 
 /* Modifications */
 
@@ -23,7 +23,87 @@ pre.highlight code,
   white-space: nowrap;
 }
 
+/* Post styles */
+.post {
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+.post-header {
+  margin-top: 1em;
+}
+
+.post-title {
+  margin: 0 0 0.5em;
+  font-size: 1.8em;
+  
+  a {
+    color: #333;
+    text-decoration: none;
+    
+    &:hover {
+      color: #e25440;
+    }
+  }
+}
+
+.post-meta {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+
+/* Post thumbnail styles */
+.post-thumbnail {
+  margin-bottom: 1em;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-thumbnail__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.post-thumbnail:hover .post-thumbnail__image {
+  transform: scale(1.02);
+}
+
+/* Pagination styles */
+.pagination {
+  text-align: center;
+  padding: 2em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.pagination__prev,
+.pagination__next {
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.pagination__prev:hover,
+.pagination__next:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
 .pagination__page-number {
+  color: #666;
+  font-size: 0.9em;
   display: inline-block;
   padding: 10px;
 }
@@ -47,7 +127,7 @@ pre.highlight code,
 }
 
 .footer__copyright {
-    margin: 0 20px 10px;
+  margin: 0 20px 10px;
 }
 
 .user-image {
@@ -56,5 +136,5 @@ pre.highlight code,
   width: 100px;
   height: 100px;
   border: 3px solid #fff;
-  border-radius:100%;
+  border-radius: 100%;
 }
