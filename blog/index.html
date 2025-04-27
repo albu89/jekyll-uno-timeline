@@ -7,20 +7,49 @@ title: Blog
   {% if paginator.posts.size > 0 %}
     {% for post in paginator.posts %}
       <article class="post">
-        {% if post.thumbnail %}
-        <div class="post-thumbnail">
-          <a href="{% if post.video_url %}{{ post.video_url }}{% else %}{{ site.baseurl }}{{ post.url }}{% endif %}" target="{% if post.video_url %}_blank{% endif %}">
-            <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="post-thumbnail__image">
-          </a>
-        </div>
-        {% endif %}
-        
-        <div class="post-header">
-          <h2 class="post-title">
-            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-          </h2>
-          <div class="post-meta">
-            <time datetime="{{ post.date | date: "%Y-%m-%d" }}" class="post-meta__date">{{ post.date | date: "%-d %b %Y" }}</time>
+        <div class="post-main">
+          <div class="post-header">
+            <h2 class="post-title">
+              {{ post.title }}
+            </h2>
+          </div>
+          
+          <div class="post-content-wrapper">
+            {% if post.thumbnail %}
+            <div class="post-thumbnail">
+              <a href="{% if post.video_url %}{{ post.video_url }}{% else %}{{ site.baseurl }}{{ post.url }}{% endif %}" target="{% if post.video_url %}_blank{% endif %}">
+                <img src="{{ post.thumbnail }}" alt="{{ post.title }}" class="post-thumbnail__image">
+              </a>
+            </div>
+            {% endif %}
+            
+            <div class="post-content">
+              {% if post.excerpt %}
+              <div class="post-excerpt">
+                {{ post.excerpt | strip_html | truncatewords: 50 }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="post-footer">
+            {% if post.event %}
+            <div class="event-details">
+              <span class="event-name">{{ post.event.name }}</span>
+              <span class="event-date">{{ post.event.date | date: "%-d %B %Y" }}</span>
+              <span class="event-location">{{ post.event.location }}</span>
+            </div>
+            {% endif %}
+            
+            {% if post.presentation_url %}
+            <div class="presentation-links">
+              <a href="{{ site.baseurl }}{{ post.presentation_url }}" class="presentation-link" target="_blank">Presentation</a>
+              {% if post.video_url %}
+              <span class="link-separator">|</span>
+              <a href="{{ post.video_url }}" class="presentation-link" target="_blank">Link</a>
+              {% endif %}
+            </div>
+            {% endif %}
           </div>
         </div>
       </article>

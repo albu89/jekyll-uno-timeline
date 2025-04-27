@@ -11,35 +11,49 @@ function toggleMobileMenu() {
 
 $(document).ready(function () {
   $('a.panel-button').click(function (e) {
-    if ($('.content-wrapper').hasClass('showing')){
-      $('.content-wrapper').removeClass('animated slideInRight')
-      $('.panel-cover').removeClass('panel-cover--collapsed')
-      $('.panel-cover').css('max-width', '100%')
-      $('.panel-cover').animate({'width': '100%'}, 400, swing = 'swing', function () {})
-      $('.content-wrapper').removeClass('showing')
-      history.pushState("", document.title, window.location.pathname + window.location.search);
-      //window.location.hash = '' // leaves #
-      e.preventDefault();
+    e.preventDefault();
+    var href = $(this).attr('href');
+    var isBlogLink = href === '{{ site.baseurl }}/blog';
+    var isPublicationsLink = href === '{{ site.baseurl }}/publications';
+    var isProjectsLink = href === '{{ site.baseurl }}/projects';
+    var currentPath = window.location.pathname;
+
+    // Handle navigation
+    if (isBlogLink || isPublicationsLink || isProjectsLink) {
+      window.location.href = href;
       return;
     }
+
+    // Toggle panel for other links
+    if ($('.content-wrapper').hasClass('showing')){
+      $('.content-wrapper').removeClass('showing')
+      $('.panel-cover').removeClass('panel-cover--collapsed')
+      $('.panel-cover').css('max-width', '100%')
+      $('.panel-cover').css('width', '100%')
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      return;
+    }
+
     $('.panel-cover').addClass('panel-cover--collapsed');
     currentWidth = $('.panel-cover').width()
     if (currentWidth < 960) {
       $('.panel-cover').addClass('panel-cover--collapsed')
-      $('.content-wrapper').addClass('animated slideInRight')
     } else {
-      $('.panel-cover').css('max-width', currentWidth)
-      $('.panel-cover').animate({'max-width': '530px', 'width': '40%'}, 400, swing = 'swing', function () {})
+      $('.panel-cover').css('max-width', '530px')
+      $('.panel-cover').css('width', '40%')
     }
     $('.content-wrapper').addClass('showing');
   })
 
-  if (window.location.hash && window.location.hash == '#projects') {
-    $('a.panel-button').click();
-  }
-
-  if (window.location.pathname !== '{{ site.baseurl }}/' && window.location.pathname !== '{{ site.baseurl }}/index.html') {
+  // Check if we should collapse the panel based on current path
+  var currentPath = window.location.pathname;
+  if (currentPath.indexOf('/blog') === 0 || 
+      currentPath.indexOf('/publications') === 0 ||
+      currentPath.indexOf('/projects') === 0 ||
+      (currentPath !== '{{ site.baseurl }}/' && 
+       currentPath !== '{{ site.baseurl }}/index.html')) {
     $('.panel-cover').addClass('panel-cover--collapsed')
+    $('.content-wrapper').addClass('showing')
   }
 
   $('.btn-mobile-menu').click(function () {

@@ -1,0 +1,33 @@
+---
+layout: post
+title: "Computational Synergy: Advancing Drug Discovery and Clinical Trials in Pharma"
+categories: jekyll update
+tags: [jekyll, markdown, blog, pharma, AI]
+thumbnail: /images/amld.jpg
+video_url: https://appliedmldays.org/
+presentation_url: /assets/presentations/ontology_learning_amld.pdf
+event:
+  date: "2025-02-12"
+  name: "AMLD"
+  location: "Lausanne, Switzerland"
+excerpt: "It was my privilege to host an event at AMLD (Applied Machine Learning Days) exploring synergies in AI research for discovery and clinical development. I also had the opportunity to present my latest research on ontology learning, highlighting how AI-driven knowledge structures can accelerate innovation in the life sciences."
+---
+
+Your post content here...
+
+{% if page.presentation_url %}
+<div class="presentation-download">
+  <a href="{{ site.baseurl }}{{ page.presentation_url }}" class="btn" target="_blank">
+    <i class="fa-solid fa-file-powerpoint"></i> Download Presentation
+  </a>
+</div>
+{% endif %}
+
+{% if page.presentation_embed %}
+<div class="presentation-embed">
+  <iframe src="{{ page.presentation_embed }}" width="100%" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe>
+</div>
+{% endif %}
+
+  
+
